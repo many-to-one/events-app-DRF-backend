@@ -15,19 +15,17 @@ function EventList() {
         getEvents()
     }, [])
 
-    // ###################GET ALL EVENTS###################
+    // ################### GET ALL EVENTS ###################
     const getEvents = async () => {
-        if (id === 'new') return
         const response = await fetch("/api/events/")
         const data = await response.json()
         setEvents(data)
         console.log(data)
     };
-    
+
 
     return (
-      <div>
-        events:
+      <div className="event-list">
         <div>
             {events.map((ev, index) => (
                 <ListItem key={index} ev={ev} />

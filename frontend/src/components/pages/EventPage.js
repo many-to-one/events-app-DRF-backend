@@ -4,7 +4,7 @@ import { MdDelete, MdDoneAll, MdArrowBackIosNew } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom';
 
 
-const EventPage = (history) => {
+const EventPage = () => {
 
     const navigate = useNavigate();
 
@@ -16,15 +16,14 @@ const EventPage = (history) => {
         getEvent()
     }, [])
 
-    // ###################GET EVENT BY ID###################
+    // ################### GET EVENT BY ID ###################
     const getEvent = async () => {
         const response = await fetch(`/api/events/${id}`)
         const data = await response.json()
         setEvent(data)
-        console.log(data)
     };
 
-    // ###################CREATE EVENT BY ID###################
+    // ################### CREATE EVENT ######################
     const createEvent = async () => {
         fetch("/api/event/create/", {
             method: 'POST',
@@ -35,7 +34,7 @@ const EventPage = (history) => {
         })
     };
 
-    // ###################UPDATE EVENT BY ID###################
+    // ################### UPDATE EVENT BY ID ###################
     const updateEvent = async () => {
         fetch(`/api/events/${id}/update/`, {
             method: 'PUT',
@@ -46,7 +45,7 @@ const EventPage = (history) => {
         })
     };
 
-    // ###################DELETE EVENT BY ID###################
+    // ################### DELETE EVENT BY ID ###################
     const deleteEvent = async () => {
         fetch(`/api/events/${id}/delete/`, {
             method: 'DELETE',
@@ -57,11 +56,10 @@ const EventPage = (history) => {
         navigate("/")
     };
 
-    // ###################BUTTON ONCLICK FUNCTION###################
+    // ################### BUTTON ONCLICK FUNCTION ###################
     const handleSubmit = () => {
-        if(id !== 'new' && !event.event) {
-            deleteEvent()
-        } else if(id !== 'new') {
+
+        if(id !== 'new') {
             updateEvent()
         } else if(id === 'new' && event !== null) {
             createEvent()
@@ -81,29 +79,33 @@ const EventPage = (history) => {
             />
         </Link>
         <p>{event.date}</p>
-        <textarea 
-            onChange={(e) => {setEvent({...event, 'event': e.target.value})}} 
-            defaultValue={event.event}>
-        </textarea>
+
+        <div className='event-container'>
+            <textarea 
+                className='text-event'
+                onChange={(e) => {setEvent({...event, 'event': e.target.value})}} 
+                defaultValue={event.event}>
+            </textarea>
         
-        <button className="event-btn" onClick={handleSubmit} type="submit">
-            <MdDoneAll 
-                style={{
-                        width: "50px",
-                        height: "50px",
-                        color: "#F0007F",
-                    }}
-            />
-        </button> 
-        <button className="event-btn" onClick={deleteEvent} type="submit">
-                <MdDelete 
+            <button className="event-btn" onClick={handleSubmit} type="submit">
+                <MdDoneAll 
                     style={{
-                        width: "50px",
-                        height: "50px",
-                        color: "#F0007F",
-                    }}
+                            width: "50px",
+                            height: "50px",
+                            color: "#F0007F",
+                        }}
                 />
+            </button> 
+            <button className="event-btn" onClick={deleteEvent} type="submit">
+                    <MdDelete 
+                        style={{
+                            width: "50px",
+                            height: "50px",
+                            color: "#F0007F",
+                        }}
+                    />
             </button>
+        </div>
         
     </div>
   )
