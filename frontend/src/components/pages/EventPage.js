@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { MdDelete, MdDoneAll, MdArrowBackIosNew } from 'react-icons/md'
+import { MdDoneAll, MdArrowBackIosNew } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -45,17 +45,6 @@ const EventPage = () => {
         })
     };
 
-    // ################### DELETE EVENT BY ID ###################
-    const deleteEvent = async () => {
-        fetch(`/api/events/${id}/delete/`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        navigate("/")
-    };
-
     // ################### BUTTON ONCLICK FUNCTION ###################
     const handleSubmit = () => {
 
@@ -96,15 +85,6 @@ const EventPage = () => {
                         }}
                 />
             </button> 
-            <button className="event-btn" onClick={deleteEvent} type="submit">
-                    <MdDelete 
-                        style={{
-                            width: "50px",
-                            height: "50px",
-                            color: "#F0007F",
-                        }}
-                    />
-            </button>
         </div>
         
     </div>

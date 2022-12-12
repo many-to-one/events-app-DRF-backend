@@ -2,14 +2,11 @@ import { useEffect, useState } from "react"
 import React from 'react'
 import ListItem from "../ListItem"
 import AddButton from "../AddButton"
-import { Link, useParams } from 'react-router-dom'
 
 
 function EventList() {
 
     const [events, setEvents] = useState([])
-
-    const { id } = useParams();
 
     useEffect(() => {
         getEvents()
@@ -20,11 +17,10 @@ function EventList() {
         const response = await fetch("/api/events/")
         const data = await response.json()
         setEvents(data)
-        console.log(data)
     };
 
-
     return (
+
       <div className="event-list">
         <div>
             {events.map((ev, index) => (

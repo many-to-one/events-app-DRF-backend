@@ -24,7 +24,7 @@
   gap: 20px;
   align-items: center;
   justify-content: space-around;
-  font-size: 15px;
+  font-size: 10px;
   color: white;
 }
 
@@ -33,6 +33,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 40px;
 }
 
 .event-btn {
@@ -61,4 +62,35 @@
   border: none;
   outline: none;
   color: white;
+}
+
+/* ###################### LIST ITEM ######################## */
+
+.list-item-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 150px; */
+  border: 1px solid rgb(243, 234, 234);
+}
+
+.list-item-container-mini {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 200px;
+}
+
+.list-item h1{
+  font-size: 15px;
+  color: whitesmoke;
+}
+
+.list-item p{
+  font-size: 15px;
+  color: whitesmoke;
 }

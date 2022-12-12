@@ -8,9 +8,7 @@ from .models import Event
 
 @api_view(['GET'])
 def getEvents(request):
-    events = Event.objects.all()
-    # if events.count() > 1:
-    #     events = Event.objects.all().order_by('-updated')
+    events = Event.objects.all().order_by('-date')
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
 
