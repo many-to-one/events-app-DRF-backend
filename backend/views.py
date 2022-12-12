@@ -9,8 +9,8 @@ from .models import Event
 @api_view(['GET'])
 def getEvents(request):
     events = Event.objects.all()
-    if events.count() > 1:
-        events = Event.objects.all().order_by('-updated')
+    # if events.count() > 1:
+    #     events = Event.objects.all().order_by('-updated')
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
 
@@ -19,6 +19,21 @@ def getEvent(request, pk):
     event = Event.objects.get(id=pk)
     serializer = EventSerializer(event, many=False)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def createEvent(request):
+    data = request.data
+    event = Event.objects.create(
+        # date=data['date'],
+        event=data['event'],
+        # hours=data['hours'],
+        # minutes=data['minutes'],
+        # visits=data['visits'],
+        # publications=data['publications'],
+        # films=data['films'],
+    )
+    serializer = EventSerializer(event, many=False)
+    return Response(serializer.data)    
 
 @api_view(['PUT'])
 def updateEvent(request, pk):
