@@ -4,7 +4,7 @@ import ListItem from "../ListItem"
 import AddButton from "../AddButton"
 
 
-function EventList() {
+function EventList({hr}) {
 
     const [events, setEvents] = useState([])
 

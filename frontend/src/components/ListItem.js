@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md'
 
 
+
 const ListItem = ({ev}) => {
 
   const navigate = useNavigate();
@@ -29,15 +30,11 @@ const deleteEvent = async () => {
       
       <div className='list-item-container-mini'>
         <div className='list-item'>
-          {/* <Link to={`/events/${ev.id}`}> */}
-            <h1>{ev.date.slice(0, 16)}</h1>
-          {/* </Link> */}
+            <h1>{ev.date.slice(0, 10)}</h1>
         </div>
 
         <div className='list-item'>
-          {/* <Link to={`/events/${ev.id}`}> */}
             <p>{ev.event}</p>
-          {/* </Link> */}
         </div>
       </div>
     

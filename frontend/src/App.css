@@ -1,23 +1,26 @@
 .container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 120vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #292929;;
 }
 
 .App {
   width: 100%;
   max-width: 600px;
   min-width: none;
-  height: 88vh;
+  height: 100%;
+  min-height: 88vh;
   margin: 0, auto;
   background-color: #000000;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .header {
-  background-color: #282c34;
+  background-color: #1b1d21;
   min-height: 1vh;
   display: flex;
   flex-direction: row;
@@ -26,6 +29,14 @@
   justify-content: space-around;
   font-size: 10px;
   color: white;
+}
+
+.header div p {
+  color: rgb(253, 202, 73);
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .event-list {
@@ -44,53 +55,248 @@
 
 /* ###################### EVENT PAGE ######################## */
 
-.event-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 0, auto;
-  margin-left: 4%;
+@media only screen and (min-width: 600px) and (max-width: 1600px) {
+
+  .event-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0, auto;
+  }
+  
+  .text-event {
+    width: 100%;
+    min-width: 20vw;
+    max-width: 70vw;
+    height: auto;
+    min-height: 50px;
+    background-color: #282c34;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+  }
+  
+  .event-btn-submit {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    margin-left: 45%;
+  }
+
 }
 
-.text-event {
-  width: 100%;
-  min-width: 200px;
-  max-width: 400px;
-  height: auto;
-  min-height: 50px;
-  background-color: #282c34;
-  border: none;
-  outline: none;
-  color: white;
+@media only screen and (max-width: 600px) {
+
+  .event-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0, auto;
+  }
+  
+  .text-event {
+    width: 100%;
+    min-width: 20vw;
+    max-width: 77vw;
+    height: auto;
+    min-height: 50px;
+    background-color: #282c34;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+  }
+  
+  .event-btn-submit {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    margin-left: 45%;
+  }
+  
+
 }
+
 
 /* ###################### LIST ITEM ######################## */
 
-.list-item-container {
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
-  align-items: center;
-  justify-content: space-between;
-  /* gap: 150px; */
-  border: 1px solid rgb(243, 234, 234);
+@media only screen and (min-width: 600px) and (max-width: 1600px) {
+
+  .App {
+    width: 100%;
+    max-width: 1200px;
+    min-width: none;
+    height: 100%;
+    min-height: 88vh;
+    margin: 0, auto;
+    background-color: #000000;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  .list-item-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+    height: 10vh;
+    border: 1px solid rgb(32, 32, 32);
+    border-radius: 10px;
+    background-color: #282c34;
+    transition: all ease-in-out .4s;
+  }
+  
+  .list-item-container:hover {
+    background-color: #464c58;
+  }
+  
+  .list-item-container-mini {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    min-width: 65vw;
+  }
+  
+  .list-item h1{
+    font-size: 15px;
+    color: whitesmoke;
+  }
+  
+  .list-item p{
+    font-size: 15px;
+    color: whitesmoke;
+  }
+
 }
 
-.list-item-container-mini {
+
+
+@media only screen and (max-width: 600px) {
+
+  .list-item-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+    border: 1px solid rgb(32, 32, 32);
+    border-radius: 10px;
+    background-color: #282c34;
+    transition: all ease-in-out .4s;
+    margin-top: 12px;
+  }
+  
+  .list-item-container:hover {
+    background-color: #464c58;
+  }
+  
+  .list-item-container-mini {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    min-width: 60vw;
+  }
+
+  .list-item {
+    height: 3vh;
+    margin-top: -12px;
+  }
+  
+  .list-item h1{
+    font-size: 15px;
+    color: whitesmoke;
+    margin-top: -2px;
+  }
+  
+  .list-item p{
+    font-size: 15px;
+    color: whitesmoke;
+  }
+  
+}
+
+
+/* ###################### RESULT ######################## */
+.result-container-main p {
+  color: aliceblue;
+  font-size: 20px;
+  font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.result-container-main {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
-  width: 100%;
-  max-width: 500px;
-  min-width: 200px;
+  justify-content: center;
+  margin: 0, auto;
 }
 
-.list-item h1{
-  font-size: 15px;
-  color: whitesmoke;
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 20px;
 }
 
-.list-item p{
-  font-size: 15px;
-  color: whitesmoke;
+@media only screen and (min-width: 600px) and (max-width: 1600px) {
+
+  .left {
+    min-width: 60vw;
+    height: 10vh;
+    background-color: #282c34;
+    border-radius: 10px;
+  }
+  
+  .left p {
+    margin-top: 12px;
+    margin-left: 12px;
+  }
+  
+  .right {
+    width: 100%;
+    max-width: 10vw;
+    height: 10vh;
+    background-color: #282c34;
+    border-radius: 10px;
+  }
+  
+  .right p {
+    margin-top: 12px;
+    margin-left: 3.7vw;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+  .left {
+    width: 100%;
+    max-width: 65vw;
+    min-width: 20vw;
+    height: 7vh;
+    background-color: #282c34;
+    border-radius: 10px;
+  }
+  
+  .left p {
+    margin-top: 12px;
+    margin-left: 12px;
+  }
+  
+  .right {
+    width: 100%;
+    max-width: 15vw;
+    height: 7vh;
+    background-color: #282c34;
+    border-radius: 10px;
+  }
+  
+  .right p {
+    margin-top: 12px;
+    margin-left: 3.7vw;
+  }  
+
 }

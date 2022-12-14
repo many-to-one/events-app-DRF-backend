@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { MdDoneAll, MdArrowBackIosNew } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,10 @@ const EventPage = () => {
     const navigate = useNavigate();
 
     const [event, setEvent] = useState({name: {}});
+
+    const [hours, setHours] = useState({hours: {}});
+
+    const inputRef = useRef();
 
     const { id } = useParams();
 
@@ -25,9 +29,10 @@ const EventPage = () => {
 
     // ################### CREATE EVENT ######################
     const createEvent = async () => {
+        const data = [event, hours]
         fetch("/api/event/create/", {
             method: 'POST',
-            body:JSON.stringify(event),
+            body:JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -36,6 +41,7 @@ const EventPage = () => {
 
     // ################### UPDATE EVENT BY ID ###################
     const updateEvent = async () => {
+
         fetch(`/api/events/${id}/update/`, {
             method: 'PUT',
             headers: {
@@ -43,6 +49,7 @@ const EventPage = () => {
             },
             body:JSON.stringify(event)
         })
+        console.log(event)
     };
 
     // ################### BUTTON ONCLICK FUNCTION ###################
@@ -54,7 +61,8 @@ const EventPage = () => {
             createEvent()
         };
         navigate("/")
-    }
+    } 
+    
 
   return (
     <div className='event'>
@@ -75,7 +83,23 @@ const EventPage = () => {
                 onChange={(e) => {setEvent({...event, 'event': e.target.value})}} 
                 defaultValue={event.event}>
             </textarea>
-        
+            <button className="event-btn" onClick={handleSubmit} type="submit">
+                <MdDoneAll 
+                    style={{
+                            width: "50px",
+                            height: "50px",
+                            color: "#F0007F",
+                        }}
+                />
+            </button> 
+        </div>
+
+        <div className='event-container'>
+            <textarea 
+                className='text-event'
+                onChange={(e) => {setHours({...event, 'hours': e.target.value})}} 
+                defaultValue={event.event}>
+            </textarea>
             <button className="event-btn" onClick={handleSubmit} type="submit">
                 <MdDoneAll 
                     style={{

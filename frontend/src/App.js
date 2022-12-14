@@ -7,7 +7,8 @@ import {
 import './App.css';
 import Header from './components/Header';
 import EventList from './components/pages/EventList';
-import EventPage from './components/pages/EventPage';
+import NewEventPage from './components/pages/NewEventPage';
+import Result from './components/Result';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Header/>
           <Routes>
             <Route path="/" exact element={<EventList/>} />
-            <Route path="/events/:id" element={<EventPage /> } />
+            <Route path="/events/:id" element={<NewEventPage /> } />
+            <Route path="/result" exact element={<Result/>} />
           </Routes>
         </div>
       </div>  
