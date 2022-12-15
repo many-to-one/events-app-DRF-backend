@@ -53,20 +53,9 @@ def deleteEvent(request, pk):
 
 @api_view(['GET'])
 def getResults(request):
-    # hours = 0
-    # minutes = 0
-    # visits = 0
-    # publications = 0
-    # films = 0
     events = Event.objects.all()
-    # for h in events:
-    #     hours += h.hours
-    #     minutes += h.minutes
-    #     visits += h.visits
-    #     publications += h.publications
-    #     films += h.films
-    result = HoursResult.objects.get(id=34)
-    for h in events:
+    result = HoursResult.objects.get(id=34) # Create mounth and find HoursResult by month, then save
+    for h in events:                        # and create a new HoursResul with a new one month.
         result.hours += h.hours
         result.minutes += h.minutes
         if result.minutes >= 60:
@@ -75,7 +64,7 @@ def getResults(request):
         result.visits += h.visits
         result.publications += h.publications
         result.films += h.films
-    result.save    
+    # result.save()   
     serializer = EventSerializer(result, many=False)
     return Response(serializer.data)
 
