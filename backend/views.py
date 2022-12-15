@@ -53,28 +53,29 @@ def deleteEvent(request, pk):
 
 @api_view(['GET'])
 def getResults(request):
-    hours = 0
-    minutes = 0
-    visits = 0
-    publications = 0
-    films = 0
+    # hours = 0
+    # minutes = 0
+    # visits = 0
+    # publications = 0
+    # films = 0
     events = Event.objects.all()
-    for h in events:
-        hours += h.hours
-        minutes += h.minutes
-        visits += h.visits
-        publications += h.publications
-        films += h.films
-
+    # for h in events:
+    #     hours += h.hours
+    #     minutes += h.minutes
+    #     visits += h.visits
+    #     publications += h.publications
+    #     films += h.films
     result = HoursResult.objects.get(id=34)
-    result.hours += hours
-    result.minutes += minutes
-    if result.minutes >= 60:
-        result.hours + 1
-        result.minutes -= 60
-    result.visits += visits
-    result.publications += publications
-    result.films += films
+    for h in events:
+        result.hours += h.hours
+        result.minutes += h.minutes
+        if result.minutes >= 60:
+            result.hours += 1
+            result.minutes -= 60
+        result.visits += h.visits
+        result.publications += h.publications
+        result.films += h.films
+    result.save    
     serializer = EventSerializer(result, many=False)
     return Response(serializer.data)
 
