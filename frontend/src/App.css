@@ -47,6 +47,14 @@
   gap: 40px;
 }
 
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 50px;
+}
+
 .event-btn {
   background: none;
   border: 0;

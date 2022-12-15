@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import React from 'react'
 import ListItem from "../ListItem"
 import AddButton from "../AddButton"
+import { RiDeleteBack2Fill } from 'react-icons/ri'
 
 
 function EventList({hr}) {
@@ -19,15 +20,45 @@ function EventList({hr}) {
         setEvents(data)
     };
 
+    // ################### DELETE ALL EVENTS ###################
+
+    const deleteAll = async () => {
+
+        fetch("/api/event/delete-all/", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        window.location.reload(false);
+      };
+
     return (
 
       <div className="event-list">
+
         <div>
             {events.map((ev, index) => (
                 <ListItem key={index} ev={ev} />
             ))}
         </div>
-        <AddButton />
+
+        <div className="btn-container">
+
+            <button className="event-btn" onClick={deleteAll} type="submit">
+                <RiDeleteBack2Fill
+                    style={{
+                        width: "50px",
+                        height: "50px",
+                        color: "#F0007F",
+                    }}
+                />
+            </button>
+
+            <AddButton />
+
+        </div>
+
       </div>
     )
 }

@@ -69,8 +69,17 @@ def getResults(request):
     result = HoursResult.objects.get(id=34)
     result.hours += hours
     result.minutes += minutes
+    if result.minutes >= 60:
+        result.hours + 1
+        result.minutes -= 60
     result.visits += visits
     result.publications += publications
     result.films += films
     serializer = EventSerializer(result, many=False)
     return Response(serializer.data)
+
+@api_view(['DELETE'])
+def deleteAll(request):
+    events = Event.objects.all()
+    events.delete()
+    return Response('Events were deleted')
