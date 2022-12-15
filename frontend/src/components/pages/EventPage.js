@@ -29,10 +29,9 @@ const EventPage = () => {
 
     // ################### CREATE EVENT ######################
     const createEvent = async () => {
-        const data = [event, hours]
         fetch("/api/event/create/", {
             method: 'POST',
-            body:JSON.stringify(data),
+            body:JSON.stringify(event),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -78,29 +77,60 @@ const EventPage = () => {
         <p>{event.date}</p>
 
         <div className='event-container'>
+            <label for="name">
+                Event:
+            </label>
             <textarea 
                 className='text-event'
                 onChange={(e) => {setEvent({...event, 'event': e.target.value})}} 
                 defaultValue={event.event}>
-            </textarea>
-            <button className="event-btn" onClick={handleSubmit} type="submit">
-                <MdDoneAll 
-                    style={{
-                            width: "50px",
-                            height: "50px",
-                            color: "#F0007F",
-                        }}
-                />
-            </button> 
+            </textarea><br></br>
         </div>
 
         <div className='event-container'>
-            <textarea 
+            <label for="name">
+                Hours:
+            </label>
+            <input 
                 className='text-event'
                 onChange={(e) => {setHours({...event, 'hours': e.target.value})}} 
-                defaultValue={event.event}>
-            </textarea>
-            <button className="event-btn" onClick={handleSubmit} type="submit">
+                defaultValue={event.hours}>
+            </input><br></br>
+        </div>
+
+        <div className='event-container'>
+            <input 
+                className='text-event'
+                onChange={(e) => {setHours({...event, 'hours': e.target.value})}} 
+                defaultValue={event.minutes}>
+            </input> <br></br>
+        </div>
+
+        <div className='event-container'>
+            <input 
+                className='text-event'
+                onChange={(e) => {setHours({...event, 'hours': e.target.value})}} 
+                defaultValue={event.visits}>
+            </input> <br></br>
+        </div>
+
+        <div className='event-container'>
+            <input 
+                className='text-event'
+                onChange={(e) => {setHours({...event, 'hours': e.target.value})}} 
+                defaultValue={event.publications}>
+            </input> <br></br>
+        </div>
+
+        <div className='event-container'>
+            <input 
+                className='text-event'
+                onChange={(e) => {setHours({...event, 'hours': e.target.value})}} 
+                defaultValue={event.films}>
+            </input> <br></br>
+        </div>
+
+        <button className="event-btn" onClick={handleSubmit} type="submit">
                 <MdDoneAll 
                     style={{
                             width: "50px",
@@ -108,8 +138,7 @@ const EventPage = () => {
                             color: "#F0007F",
                         }}
                 />
-            </button> 
-        </div>
+            </button>
         
     </div>
   )

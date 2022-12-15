@@ -6,23 +6,27 @@ import { useNavigate } from 'react-router-dom';
 
 function NewEventPage() {
 
-    const [event, setEvent] = useState('');
-    const [hours, setHours] = useState('');
-    const [minutes, setMinutes] = useState('');
-    const [visits, setVisits] = useState('');
-    const [publications, setPublications] = useState('');
-    const [films, setFilms] = useState('');
+    const [event, setEvent] = useState({name: {}});
 
     const { id } = useParams();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        getEvent()
+    }, [])    
+
+// ################### GET EVENT BY ID ###################
+const getEvent = async () => {
+    const response = await fetch(`/api/events/${id}`)
+    const data = await response.json()
+    setEvent(data)
+};
+
 // ################### CREATE EVENT ######################
 const createEvent = async () => {
-    const data = {event, hours, minutes, visits, publications, films}
-    console.log(data)
     fetch("/api/event/create/", {
         method: 'POST',
-        body:JSON.stringify(data),
+        body:JSON.stringify(event),
         headers: {
             'Content-Type': 'application/json'
         }, 
@@ -31,25 +35,21 @@ const createEvent = async () => {
 
 // ################### UPDATE EVENT BY ID ###################
 const updateEvent = async () => {
-    const data = {event, hours, minutes, visits, publications, films}
-    console.log(data)
     fetch(`/api/events/${id}/update/`, {
         method: 'PUT',
-        body:JSON.stringify(data),
+        body:JSON.stringify(event),
         headers: {
             'Content-Type': 'application/json'
         },
     })
-    console.log(data)
+    // console.log(data)
 };
 
 // ################### BUTTON ONCLICK FUNCTION ###################
 const handleSubmit = () => {
-
-    const data = {event, hours, minutes, visits, publications, films}
     if(id !== 'new') {
         updateEvent()
-    } else if(id === 'new' && data !== null) {
+    } else if(id === 'new' && event !== null) {
         createEvent()
     };
     navigate("/")
@@ -68,60 +68,54 @@ const handleSubmit = () => {
                 />
             </Link>
 
-            <p>{event.data}</p>
             <div className='event-container'>
-                <input 
-                    placeholder='Event' 
-                    className='text-event' 
-                    type="text" name="event" 
-                    value={event} 
-                    onChange={(e) => {setEvent(e.target.value)}} 
-                    defaultValue={event} 
-                /><br></br>
+                <textarea 
+                    placeholder='Event'
+                    className='text-event'
+                    type="number" 
+                    name="hours" 
+                    onChange={(e) => {setEvent({...event, 'event': e.target.value})}}  
+                    defaultValue={event.event}>
+                </textarea><br></br>
                 <input 
                     placeholder='Hours'
                     className='text-event'
                     type="number" 
                     name="hours" 
-                    value={hours} 
-                    onChange={(e) => {setHours(e.target.value)}}  
-                    defaultValue={hours}
+                    onChange={(e) => {setEvent({...event, 'hours': e.target.value})}} 
+                    defaultValue={event.hours}
                 /><br></br>
                 <input 
                     placeholder='Minutes'
                     className='text-event'
                     type="number" 
                     name="minutes" 
-                    value={minutes} 
-                    onChange={(e) => {setMinutes(e.target.value)}}  
-                    defaultValue={minutes}
+                    onChange={(e) => {setEvent({...event, 'minutes': e.target.value})}}   
+                    defaultValue={event.minutes}
                 /><br></br>
                 <input 
                     placeholder='Visits'
                     className='text-event'
                     type="number" 
                     name="visits" 
-                    value={visits} 
-                    onChange={(e) => {setVisits(e.target.value)}}  
-                    defaultValue={visits}
+                    onChange={(e) => {setEvent({...event, 'visits': e.target.value})}}   
+                    defaultValue={event.visits}
                 /><br></br>
                 <input 
                     placeholder='Publications'
                     className='text-event'
                     type="number" 
                     name="publications" 
-                    value={publications} 
-                    onChange={(e) => {setPublications(e.target.value)}}  
-                    defaultValue={publications}
+                    onChange={(e) => {setEvent({...event, 'publications': e.target.value})}}   
+                    defaultValue={event.publications}
                 /><br></br>
                 <input 
                     placeholder='Films'
                     className='text-event'
                     type="number" 
                     name="films" 
-                    value={films} 
-                    onChange={(e) => {setFilms(e.target.value)}}  
-                    defaultValue={films}
+                    onChange={(e) => {setEvent({...event, 'films': e.target.value})}}   
+                    defaultValue={event.films}
                 /><br></br>
             </div>
             <button className="event-btn-submit" onClick={handleSubmit} type="submit">
