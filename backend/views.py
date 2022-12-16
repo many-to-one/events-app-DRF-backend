@@ -3,8 +3,23 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 # from rest_framework import viewsets
 from .serializer import EventSerializer
-from .models import Event, HoursResult
+from .models import Event, HoursResult, Months
 
+
+month_list_UA = {
+        '1': 'January',
+        '2': 'February',
+        '3': 'March',
+        '4': 'April',
+        '5': 'May',
+        '6': 'June',
+        '7': 'July',
+        '8': 'August',
+        '9': 'September',
+        '10': 'October',
+        '11': 'November',
+        '12': 'December',
+    }
 
 @api_view(['GET'])
 def getEvents(request):
@@ -53,18 +68,19 @@ def deleteEvent(request, pk):
 
 @api_view(['GET'])
 def getResults(request):
-    events = Event.objects.all()
-    result = HoursResult.objects.get(id=34) # Create mounth and find HoursResult by month, then save
-    for h in events:                        # and create a new HoursResul with a new one month.
-        result.hours += h.hours
-        result.minutes += h.minutes
-        if result.minutes >= 60:
-            result.hours += 1
-            result.minutes -= 60
-        result.visits += h.visits
-        result.publications += h.publications
-        result.films += h.films
-    # result.save()   
+    result = Months.objects.get(id=9)
+    # events = Event.objects.all()
+    # result = HoursResult.objects.get(id=34) 
+    # for h in events:
+    #     result.date = month_list_UA[str(h.date)[5:7]]                        
+    #     result.hours += h.hours
+    #     result.minutes += h.minutes
+    #     if result.minutes >= 60:
+    #         result.hours += 1
+    #         result.minutes -= 60
+    #     result.visits += h.visits
+    #     result.publications += h.publications
+    #     result.films += h.films 
     serializer = EventSerializer(result, many=False)
     return Response(serializer.data)
 
@@ -73,3 +89,27 @@ def deleteAll(request):
     events = Event.objects.all()
     events.delete()
     return Response('Events were deleted')
+
+@api_view(['GET'])
+def getMonthResults(request):
+    month_results = Months.objects.all().order_by('-month')
+    serializer = EventSerializer(month_results, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def createMonthResults(request):
+    month_result = Months.objects.create()
+    events = Event.objects.all()
+    for ev in events:
+        month_result.date = month_list_UA[str(ev.date)[5:7]]
+        month_result.hours += ev.hours
+        month_result.minutes += ev.minutes
+        if month_result.minutes >= 60:
+            month_result.hours += 1
+            month_result.minutes -= 60
+        month_result.visits += ev.visits
+        month_result.publications += ev.publications
+        month_result.films += ev.films
+    month_result.save()
+    serializer = EventSerializer(month_result, many=False)
+    return Response(serializer.data) 

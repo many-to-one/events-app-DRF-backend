@@ -1,5 +1,5 @@
 from django.contrib import admin
-from backend.models import Event
+from backend.models import Event, Months
 from backend.models import HoursResult
 
 
@@ -15,3 +15,4 @@ class HoursResultAdmin(admin.ModelAdmin):
 
 admin.site.register(Event)
 admin.site.register(HoursResult, HoursResultAdmin)
+admin.site.register(Months)

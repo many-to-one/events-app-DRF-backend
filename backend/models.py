@@ -31,6 +31,10 @@ class Event(models.Model):
 
 
 class HoursResult(models.Model):
+    date = models.CharField(
+        null=True,
+        max_length=20,
+    )
     hours = models.IntegerField(
         default=0,
     )
@@ -49,3 +53,28 @@ class HoursResult(models.Model):
 
     def __str__(self) -> str:
         return str(self.hours)
+
+
+class Months(models.Model):
+    date = models.CharField(
+        null=True,
+        max_length=20,
+    )
+    hours = models.IntegerField(
+        default=0,
+    )
+    minutes = models.IntegerField(
+        default=0,
+    )
+    visits = models.IntegerField(
+        default=0,
+    )
+    publications = models.IntegerField(
+        default=0,
+    )
+    films = models.IntegerField(
+        default=0,
+    )  
+
+    def __str__(self) -> str:
+        return str(self.id)        

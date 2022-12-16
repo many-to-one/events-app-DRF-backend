@@ -38,8 +38,10 @@ const Result = () => {
 
       <div className='result-container-main'>
 
+        <h3 className='month'>{result.date}</h3>
+
         <div className='row-container'>
-        <div className='row'>
+          <div className='row'>
             <div className='left'>
               <p>Hours:</p>
             </div>

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import React from 'react'
 import ListItem from "../ListItem"
 import AddButton from "../AddButton"
+import { Link } from 'react-router-dom'
 import { RiDeleteBack2Fill } from 'react-icons/ri'
+import { TbChartInfographic } from 'react-icons/tb'
 
 
-function EventList({hr}) {
+function EventList() {
 
     const [events, setEvents] = useState([])
 
@@ -56,6 +58,20 @@ function EventList({hr}) {
             </button>
 
             <AddButton />
+            <Link
+                to={"/mounth_results"}
+                style={{textDecoration: 'none'}}
+                >
+                <button className="event-btn" type="submit">
+                    <TbChartInfographic
+                        style={{
+                            width: "50px",
+                            height: "50px",
+                            color: "#F0007F",
+                        }}
+                    />
+                </button>
+            </Link>
 
         </div>
 

@@ -12,7 +12,14 @@ function Header() {
             <p>RESULT</p>  
         </div>
       </Link>
-      <h1>Second Link</h1>
+      <Link 
+        to={"/mounth_results"}
+        style={{textDecoration: 'none'}}
+        >
+        <div className='h-result'>
+            <p>By Month</p>  
+        </div>
+      </Link>
       <h1>Third Link</h1>
     </div>
   )
