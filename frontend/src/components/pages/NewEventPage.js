@@ -74,7 +74,7 @@ const handleSubmit = () => {
             </Link>
 
             <div className='event-container'>
-                <p>{event.date.slice(0, 16)}</p>
+                <p>{event.date}</p>
                 <textarea 
                     placeholder='Event'
                     className='text-event'

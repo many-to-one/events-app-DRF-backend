@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 # from rest_framework import viewsets
-from .serializer import EventSerializer
-from .models import Event, HoursResult, Months
+from .serializer import EventSerializer, ImageSerializer
+from .models import Event, HoursResult, Image, Months
 from datetime import datetime
 
 
@@ -108,3 +108,17 @@ def getRecordedMonthResults(request):
     month_result.save()
     serializer = EventSerializer(month_result, many=False)
     return Response(serializer.data) 
+
+
+@api_view(['GET'])
+def getImages(request):
+    img = Image.objects.all()
+    serializer = ImageSerializer(img, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getImage(request, pk):
+    img = Image.objects.get(id=pk)
+    serializer = ImageSerializer(img, many=False)
+    return Response(serializer.data)

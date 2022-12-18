@@ -6,6 +6,7 @@ import {
   BsJustifyLeft,
   BsXCircle
 } from 'react-icons/bs'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
 function Header() {
 
@@ -53,7 +54,9 @@ function Header() {
           to={"/result"}
           style={{textDecoration: 'none'}}
           >
-            <div className='h-result'> 
+            <div 
+              className='h-result'
+              >
                 <BsFillCalendarCheckFill 
                   style={{
                     width: "30px",
@@ -92,14 +95,14 @@ function Header() {
           style={{textDecoration: 'none'}}
           >
             <div className='h-result'> 
-              <BsFillCalendarCheckFill 
+              <FaMapMarkerAlt 
                 style={{
                   width: "30px",
                   height: "50px",
                   color: "#F0007F",
                 }}
               /> 
-              <p>Test</p>
+              <p>Maps</p>
             </div>
           </Link>
         </div>

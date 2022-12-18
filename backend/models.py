@@ -77,4 +77,17 @@ class Months(models.Model):
     )  
 
     def __str__(self) -> str:
-        return str(self.id)        
+        return str(self.id)    
+
+
+class Image (models.Model):
+    name = models.CharField(
+        max_length=20,
+        null=True,
+    )  
+    image = models.ImageField(
+        upload_to=('maps')
+    )  
+
+    def __str__(self) -> str:
+        return str(self.name) 
