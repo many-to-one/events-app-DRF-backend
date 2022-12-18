@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 # from rest_framework import viewsets
 from .serializer import EventSerializer
 from .models import Event, HoursResult, Months
+from datetime import datetime
 
 
 month_list_UA = {
@@ -66,23 +67,6 @@ def deleteEvent(request, pk):
     event.delete()
     return Response('Event was deleted')
 
-@api_view(['GET'])
-def getResults(request):
-    result = Months.objects.get(id=9)
-    # events = Event.objects.all()
-    # result = HoursResult.objects.get(id=34) 
-    # for h in events:
-    #     result.date = month_list_UA[str(h.date)[5:7]]                        
-    #     result.hours += h.hours
-    #     result.minutes += h.minutes
-    #     if result.minutes >= 60:
-    #         result.hours += 1
-    #         result.minutes -= 60
-    #     result.visits += h.visits
-    #     result.publications += h.publications
-    #     result.films += h.films 
-    serializer = EventSerializer(result, many=False)
-    return Response(serializer.data)
 
 @api_view(['DELETE'])
 def deleteAll(request):
@@ -91,13 +75,24 @@ def deleteAll(request):
     return Response('Events were deleted')
 
 @api_view(['GET'])
-def getMonthResults(request):
-    month_results = Months.objects.all().order_by('-month')
-    serializer = EventSerializer(month_results, many=True)
+def getResults(request):
+    events = Event.objects.all()
+    result = HoursResult.objects.get(id=34) 
+    for h in events:
+        result.date = month_list_UA[str(h.date)[5:7]]   
+        result.hours += h.hours
+        result.minutes += h.minutes
+        if result.minutes >= 60:
+            result.hours += 1
+            result.minutes -= 60
+        result.visits += h.visits
+        result.publications += h.publications
+        result.films += h.films 
+    serializer = EventSerializer(result, many=False)
     return Response(serializer.data)
 
 @api_view(['GET'])
-def createMonthResults(request):
+def getRecordedMonthResults(request):
     month_result = Months.objects.create()
     events = Event.objects.all()
     for ev in events:

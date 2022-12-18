@@ -58,17 +58,23 @@ const handleSubmit = () => {
     return (
         <div className='event'>
 
-            <Link className="event-btn" to={'/'} type="submit">
-                <MdArrowBackIosNew 
+            <Link  to={'/'}>
+                <button 
+                    className="event-btn"
+                    id='update-back'
+                    >
+                    <MdArrowBackIosNew 
                     style={{
                         width: "50px",
                         height: "50px",
                         color: "#F0007F",
                     }}
                 />
+                </button>
             </Link>
 
             <div className='event-container'>
+                <p>{event.date.slice(0, 16)}</p>
                 <textarea 
                     placeholder='Event'
                     className='text-event'
