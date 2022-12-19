@@ -12,7 +12,7 @@ const MonthResult = () => {
     }, [])
 
     const getResult = async () => {
-        const resp = await fetch('/api/month_results/')
+        const resp = await fetch('/api/get_month_results/')
         const data = await resp.json()
         setResult(data)
         console.log(data)
