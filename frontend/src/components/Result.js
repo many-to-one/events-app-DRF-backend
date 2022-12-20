@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MdArrowBackIosNew } from 'react-icons/md'
+import { TbChartInfographic } from 'react-icons/tb'
 
 
 const Result = () => {
@@ -22,19 +23,42 @@ const Result = () => {
   return (
     <div className='result'>
 
-      <Link 
-        style={{textDecoration: 'none'}} 
-        className="event-btn" to={'/'} 
-        type="submit"
+      <div className='res-btn-cont'>
+
+        <Link 
+          style={{textDecoration: 'none'}} 
+          className="event-btn" to={'/'} 
+          id="back"
+          type="submit"
+          >
+          <MdArrowBackIosNew 
+            style={{
+              width: "50px",
+              height: "50px",
+              color: "#F0007F",
+            }}
+          />
+        </Link>
+
+        <Link
+          to={"/by_month"}
+          style={{textDecoration: 'none'}}
         >
-        <MdArrowBackIosNew 
-          style={{
-            width: "50px",
-            height: "50px",
-            color: "#F0007F",
-          }}
-        />
+        <button className="event-btn" 
+          id='archivate' 
+          type="submit">
+          <TbChartInfographic
+            style={{
+              width: "50px",
+              height: "50px",
+              color: "#F0007F",
+            }}
+          />
+        </button>
+        <p>Save</p>
       </Link>
+
+      </div>
 
       <div className='result-container-main'>
 

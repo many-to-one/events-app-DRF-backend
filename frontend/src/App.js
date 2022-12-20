@@ -7,6 +7,7 @@ import {
 import './App.css';
 import Header from './components/Header';
 import EventList from './components/pages/EventList';
+import Menu from './components/pages/Menu';
 import MonthResults from './components/pages/MonthResults';
 import NewEventPage from './components/pages/NewEventPage';
 import Result from './components/Result';
@@ -21,7 +22,8 @@ function App() {
             <Route path="/" exact element={<EventList/>} />
             <Route path="/events/:id" element={<NewEventPage /> } />
             <Route path="/result" exact element={<Result/>} />
-            <Route path="/month_result" exact element={<MonthResults/>} />
+            <Route path="/by_month" exact element={<MonthResults/>} />
+            <Route path="/menu" exact element={<Menu />} />
           </Routes>
         </div>
       </div>  

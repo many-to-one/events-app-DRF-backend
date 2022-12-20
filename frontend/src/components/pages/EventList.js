@@ -2,9 +2,8 @@ import { useEffect, useState } from "react"
 import React from 'react'
 import ListItem from "../ListItem"
 import AddButton from "../AddButton"
-import { Link } from 'react-router-dom'
 import { RiDeleteBack2Fill } from 'react-icons/ri'
-import { TbChartInfographic } from 'react-icons/tb'
+
 
 
 function EventList() {
@@ -39,13 +38,15 @@ function EventList() {
 
       <div className="event-list">
 
-        <div>
-            {events.map((ev, index) => (
-                <ListItem key={index} ev={ev} />
-            ))}
-        </div>
+        <div className="event-list-cont">
 
-        <div className="btn-container">
+            <div className="y">
+                {events.map((ev, index) => (
+                    <ListItem key={index} ev={ev} />
+                ))}
+            </div>
+
+            <div className="btn-container">
 
             <button className="event-btn" onClick={deleteAll} type="submit">
                 <RiDeleteBack2Fill
@@ -58,24 +59,14 @@ function EventList() {
             </button>
 
             <AddButton />
-            <Link
-                to={"/mounth_results"}
-                style={{textDecoration: 'none'}}
-                >
-                <button className="event-btn" type="submit">
-                    <TbChartInfographic
-                        style={{
-                            width: "50px",
-                            height: "50px",
-                            color: "#F0007F",
-                        }}
-                    />
-                </button>
-            </Link>
 
         </div>
 
-      </div>
+        </div>
+        
+      </div>  
+
+      
     )
 }
 
