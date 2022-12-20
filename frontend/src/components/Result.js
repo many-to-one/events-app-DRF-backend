@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MdArrowBackIosNew } from 'react-icons/md'
 import { TbChartInfographic } from 'react-icons/tb'
+import axios from "axios"
 
 
 const Result = () => {
@@ -10,7 +11,7 @@ const Result = () => {
 
     useEffect(() => {
       getResult()
-    }, [])
+    },[])
 
     const getResult = async () => {
         const resp = await fetch('/api/results/')
@@ -18,6 +19,7 @@ const Result = () => {
         setResult(data)
         console.log(data)
     }
+
 // #####################################################
 
   return (

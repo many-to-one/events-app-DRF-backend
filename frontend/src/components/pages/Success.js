@@ -9,7 +9,7 @@ const AllMonthResult = () => {
 
     useEffect(() => {
       getResult()
-    }, [])
+    },[])
 
     const getResult = async () => {
         const resp = await fetch('/api/month_results/')
