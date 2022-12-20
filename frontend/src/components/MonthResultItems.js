@@ -1,27 +1,29 @@
-import React from 'react'
-import { MdArrowBackIosNew } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+
 
 const MonthResultItems = ({res}) => {
-  return (
-    <div className='result'>
 
-      <Link 
-        style={{textDecoration: 'none'}} 
-        className="event-btn" to={'/'} 
-        type="submit"
-        >
-        <MdArrowBackIosNew 
-          style={{
-            width: "50px",
-            height: "50px",
-            color: "#F0007F",
-          }}
-        />
-      </Link>
+  const [events, setEvents] = useState([])
+
+  useEffect (() => {
+    getEvents()
+  }, [])
+
+// ################### GET ALL EVENTS ###################
+const getEvents = async () => {
+  const response = await fetch("/api/events/")
+  const data = await response.json()
+  setEvents(data)
+};
+
+  return (
+
+    <div className='result'>
+    <br></br>
+    <br></br>
 
       <div className='result-container-main'>
-
+      
         <h3 className='month'>{res.date}</h3>
 
         <div className='row-container'>
@@ -82,6 +84,7 @@ const MonthResultItems = ({res}) => {
       </div>
 
     </div>
+    
   )
 }
 

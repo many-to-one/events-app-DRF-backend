@@ -10,6 +10,7 @@ import EventList from './components/pages/EventList';
 import Menu from './components/pages/Menu';
 import MonthResults from './components/pages/MonthResults';
 import NewEventPage from './components/pages/NewEventPage';
+import Success from './components/pages/Success';
 import Result from './components/Result';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/events/:id" element={<NewEventPage /> } />
             <Route path="/result" exact element={<Result/>} />
             <Route path="/by_month" exact element={<MonthResults/>} />
+            <Route path="/success" exact element={<Success />} />
             <Route path="/menu" exact element={<Menu />} />
           </Routes>
         </div>

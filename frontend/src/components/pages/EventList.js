@@ -3,6 +3,7 @@ import React from 'react'
 import ListItem from "../ListItem"
 import AddButton from "../AddButton"
 import { RiDeleteBack2Fill } from 'react-icons/ri'
+import MonthResultItems from "../MonthResultItems"
 
 
 

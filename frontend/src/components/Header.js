@@ -10,7 +10,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 
 function Header() {
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   return (
 
@@ -44,12 +44,13 @@ function Header() {
 
       <nav 
         className={ isMobile ? "nav-links-mobile" : "nav-links" }
-        onClick={() => setIsMobile(false)}
+        onClick={() => setIsMobile(true)}
       >
 
         <div className='nav-links-cont'>
           
         <div className='header'> 
+          <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
           <Link 
           to={"/result"}
           style={{textDecoration: 'none'}}
@@ -68,43 +69,47 @@ function Header() {
             </div>
 
           </Link>
+          </button>
         </div>
 
         <div className='header'>
-          <Link 
-          to={"/by_month"}
-          style={{textDecoration: 'none'}}
-          >
-            <div className='h-result'> 
-              <BsReverseLayoutTextWindowReverse 
-                style={{
-                  width: "30px",
-                  height: "50px",
-                  color: "#F0007F",
-                }}
-              /> 
-              <p>By month</p>
-            </div>
-
-          </Link>
+          <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
+            <Link 
+            to={"/by_month"}
+            style={{textDecoration: 'none'}}
+            >
+              <div className='h-result'> 
+                <BsReverseLayoutTextWindowReverse 
+                  style={{
+                    width: "30px",
+                    height: "50px",
+                    color: "#F0007F",
+                  }}
+                /> 
+                <p>By month</p>
+              </div>
+            </Link>
+          </button>
         </div>
 
         <div className='header'>
-          <Link 
-          to={"/"}
-          style={{textDecoration: 'none'}}
-          >
-            <div className='h-result'> 
-              <FaMapMarkerAlt 
-                style={{
-                  width: "30px",
-                  height: "50px",
-                  color: "#F0007F",
-                }}
-              /> 
-              <p>Maps</p>
-            </div>
-          </Link>
+          <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
+            <Link 
+            to={"/"}
+            style={{textDecoration: 'none'}}
+            >
+              <div className='h-result'> 
+                <FaMapMarkerAlt 
+                  style={{
+                    width: "30px",
+                    height: "50px",
+                    color: "#F0007F",
+                  }}
+                /> 
+                <p>Maps</p>
+              </div>
+            </Link>
+          </button> 
         </div>
 
         </div>

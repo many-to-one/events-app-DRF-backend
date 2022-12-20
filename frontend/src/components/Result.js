@@ -41,7 +41,7 @@ const Result = () => {
         </Link>
 
         <Link
-          to={"/by_month"}
+          to={"/success"}
           style={{textDecoration: 'none'}}
         >
         <button className="event-btn" 

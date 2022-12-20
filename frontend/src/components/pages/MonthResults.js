@@ -18,24 +18,27 @@ const MonthResult = () => {
         setResult(data)
         console.log(data)
     }
+
 // #####################################################
 
 return(
   <div>
 
-    <Link 
-      style={{textDecoration: 'none'}} 
-      className="event-btn" to={'/'} 
-      type="submit"
-      >
-      <MdArrowBackIosNew 
-        style={{
-          width: "50px",
-          height: "50px",
-          color: "#F0007F",
-        }}
-      />
-    </Link>
+    <button className="event-btn" id='back'>
+      <Link 
+        style={{textDecoration: 'none'}} 
+        to={'/'} 
+        type="submit"
+        >
+        <MdArrowBackIosNew 
+          style={{
+            width: "50px",
+            height: "50px",
+            color: "#F0007F",
+          }}
+        />
+      </Link>
+    </button>
 
     {result.map((res, index) => (
       <MonthResultItems key={index} res={res} />
