@@ -20,6 +20,7 @@ function EventList() {
         const response = await fetch("/api/events/")
         const data = await response.json()
         setEvents(data)
+        console.log(data)
     };
 
     // ################### DELETE ALL EVENTS ###################

@@ -20,6 +20,7 @@ const getEvent = async () => {
     const response = await fetch(`/api/events/${id}`)
     const data = await response.json()
     setEvent(data)
+    console.log(data)
 };
 
 // ################### CREATE EVENT ######################

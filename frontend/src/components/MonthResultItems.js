@@ -3,18 +3,18 @@ import React, { useEffect, useState } from 'react'
 
 const MonthResultItems = ({res}) => {
 
-  const [events, setEvents] = useState([])
+  // const [events, setEvents] = useState([])
 
-  useEffect (() => {
-    getEvents()
-  }, [])
+  // useEffect (() => {
+  //   getEvents()
+  // }, [])
 
 // ################### GET ALL EVENTS ###################
-const getEvents = async () => {
-  const response = await fetch("/api/events/")
-  const data = await response.json()
-  setEvents(data)
-};
+// const getEvents = async () => {
+//   const response = await fetch("/api/events/")
+//   const data = await response.json()
+//   setEvents(data)
+// };
 
   return (
 

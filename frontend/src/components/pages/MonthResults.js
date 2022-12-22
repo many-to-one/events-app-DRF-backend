@@ -4,7 +4,7 @@ import { MdArrowBackIosNew } from 'react-icons/md'
 import MonthResultItems from '../MonthResultItems';
 
 
-const MonthResult = () => {
+const MonthResult = (res) => {
 // ################### GET ALL RESULT ###################
     const [result, setResult] = useState([]);
 

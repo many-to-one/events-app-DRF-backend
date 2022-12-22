@@ -1,28 +1,16 @@
 // import React from 'react'
 import React, { useEffect, useState } from 'react'
-import MonthResult from './MonthResults';
+import MonthResults from './MonthResults'
 
 
 const AllMonthResult = () => {
-// ################### GET ALL RESULT ###################
-    const [result, setResult] = useState([]);
+// ################### SAVE A RESULT FOR THE CURRENT MONTH ###################
 
-    useEffect(() => {
-      getResult()
-    },[])
-
-    const getResult = async () => {
-        const resp = await fetch('/api/month_results/')
-        const data = await resp.json()
-        setResult(data)
-        console.log(data)
-    }
-
-// #####################################################
+  fetch('/api/month/create/')
 
   return (
     <div>
-      <MonthResult />
+      <MonthResults />
     </div>
   )
 }

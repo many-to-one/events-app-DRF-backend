@@ -96,7 +96,7 @@ def getRecordedMonthResults(request):
     month_result = Months.objects.create()
     events = Event.objects.all()
     for ev in events:
-        # month_result.date = month_list_UA[str(ev.date)[5:7]]
+        month_result.date = month_list_UA[str(ev.date)[5:7]]
         month_result.date = str(f'{str(ev.date)[0:4]} {month_list_UA[str(ev.date)[5:7]]}')
         month_result.hours += ev.hours
         month_result.minutes += ev.minutes
@@ -109,7 +109,7 @@ def getRecordedMonthResults(request):
     month_result.save()
     serializer = EventSerializer(month_result, many=False)
     return Response(serializer.data) 
-
+    
 
 @api_view(['GET'])
 def getMonthsResults(request):
