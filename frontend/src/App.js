@@ -5,8 +5,10 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
+import EventsHistoryItem from './components/EventsHistoryItem';
 import Header from './components/Header';
 import EventList from './components/pages/EventList';
+import EventsHistory from './components/pages/EventsHistory';
 import Menu from './components/pages/Menu';
 import MonthResults from './components/pages/MonthResults';
 import NewEventPage from './components/pages/NewEventPage';
@@ -26,6 +28,7 @@ function App() {
             <Route path="/by_month" exact element={<MonthResults/>} />
             <Route path="/success" exact element={<Success />} />
             <Route path="/menu" exact element={<Menu />} />
+            <Route path="/events_history" exact element={<EventsHistory />} />
           </Routes>
         </div>
       </div>  

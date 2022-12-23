@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 # from rest_framework import viewsets
 from .serializer import EventSerializer, ImageSerializer, MonthsSerializer
-from .models import Event, HoursResult, Image, Months
+from .models import Event, EventsHistory, HoursResult, Image, Months
 from datetime import datetime
 
 
@@ -29,10 +29,22 @@ def getEvents(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def getEventsHistory(request):
+    events = EventsHistory.objects.all().order_by('-date')
+    serializer = EventSerializer(events, many=True)
+    return Response(serializer.data)    
+
+@api_view(['GET'])
 def getEvent(request, pk):
     event = Event.objects.get(id=pk)
     serializer = EventSerializer(event, many=False)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getEventHistory(request, pk):
+    event = EventsHistory.objects.get(id=pk)
+    serializer = EventSerializer(event, many=False)
+    return Response(serializer.data)    
 
 @api_view(['POST'])
 def createEvent(request):
@@ -96,7 +108,16 @@ def getRecordedMonthResults(request):
     month_result = Months.objects.create()
     events = Event.objects.all()
     for ev in events:
-        month_result.date = month_list_UA[str(ev.date)[5:7]]
+        eventsHistory = EventsHistory.objects.create()
+        eventsHistory.date = ev.date
+        eventsHistory.event = ev.event
+        eventsHistory.hours = ev.hours
+        eventsHistory.minutes = ev.minutes
+        eventsHistory.visits = ev.visits
+        eventsHistory.publications = ev.publications
+        eventsHistory.films = ev.films
+        eventsHistory.save()
+
         month_result.date = str(f'{str(ev.date)[0:4]} {month_list_UA[str(ev.date)[5:7]]}')
         month_result.hours += ev.hours
         month_result.minutes += ev.minutes

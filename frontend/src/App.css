@@ -1,7 +1,7 @@
 .App {
-  width: 100%;
-  max-width: 100vw;
-  min-width: none;
+  width: 100vw;
+  /* max-width: 100vw;
+  min-width: none; */
   height: 100%;
   min-height: 115vh;
   margin: 0, auto;
@@ -71,6 +71,8 @@
 
   .header-main {
     position: fixed;
+    top: 0;
+    left: 0;
     background-color: #1b1d21;
     height: 7vh;
     min-height: 10vw;
@@ -406,7 +408,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* margin-top: 9vh; */
   }
 
   #back {
@@ -415,6 +416,7 @@
 
   #archivate {
     margin-top: 20vh;
+    margin-left: -10vw;
   }
 
   .result-container-main {
@@ -487,6 +489,7 @@
 
   #archivate {
     margin-top: 10vh;
+    margin-left: -10vw;
   }
 
   .month {
@@ -522,5 +525,71 @@
     margin-top: 12px;
     margin-left: 3.7vw;
   }  
+
+}
+
+/* ################################# HISTORY #################################### */
+
+@media only screen and (min-width: 725px) and (max-width: 2000px) {
+
+  .history-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .history-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 80vw;
+    height: auto;
+    background-color: aliceblue;
+    border-radius: 10px;
+    margin-top: 5vh;
+  }
+
+}
+
+@media only screen and (max-width: 725px) {
+
+  .history-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .history-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60vw;
+    min-width: 150px;
+    height: 100%;
+    background-color: aliceblue;
+    border-radius: 10px;
+    margin-top: 10vh;
+  } 
+
+}
+
+/* ############################# BUTTONS ################################## */
+
+@media only screen and (min-width: 260px) and (max-width: 600px) {
+
+  #archivate {
+    margin-right: 5vw;
+  }
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 2000px) {
+
+  #archivate {
+    margin-right: 5vw;
+  }
 
 }
