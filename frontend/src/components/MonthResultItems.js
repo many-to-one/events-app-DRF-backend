@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { MdDeleteForever } from 'react-icons/md'
 
 
 const MonthResultItems = ({res}) => {
@@ -9,12 +10,16 @@ const MonthResultItems = ({res}) => {
   //   getEvents()
   // }, [])
 
-// ################### GET ALL EVENTS ###################
-// const getEvents = async () => {
-//   const response = await fetch("/api/events/")
-//   const data = await response.json()
-//   setEvents(data)
-// };
+// ################### DELETE MONTH RESULT ###################
+const deleteMonthResult = async () => {
+  fetch('/api/month/delete/', {
+    method: 'DELETE',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+})
+window.location.reload(false);
+};
 
   return (
 
@@ -23,8 +28,19 @@ const MonthResultItems = ({res}) => {
     <br></br>
 
       <div className='result-container-main'>
-      
-        <h3 className='month'>{res.date}</h3>
+
+        <div className='date-del-cont'>
+          <h3 className='month'>{res.date}</h3>
+
+          <button className="event-btn" onClick={deleteMonthResult} type="submit">
+            <MdDeleteForever 
+              style={{
+                width: "50px",
+                height: "50px",
+                color: "#F0007F",
+              }}/>
+          </button>
+        </div>
 
         <div className='row-container'>
           <div className='row'>

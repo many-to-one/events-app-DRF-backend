@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MdArrowBackIosNew } from 'react-icons/md'
-import { TbChartInfographic } from 'react-icons/tb'
-import axios from "axios"
+import { AiFillSave } from 'react-icons/ai'
 
 
 const Result = () => {
@@ -49,15 +48,14 @@ const Result = () => {
         <button className="event-btn" 
           id='archivate' 
           type="submit">
-          <TbChartInfographic
+          <AiFillSave
             style={{
               width: "50px",
               height: "50px",
               color: "#F0007F",
             }}
-          />
+          /> 
         </button>
-        <p>Save</p>
       </Link>
 
       </div>

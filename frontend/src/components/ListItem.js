@@ -21,7 +21,6 @@ const deleteEvent = async () => {
       },
   })
   window.location.reload(false);
-  // navigate("/")
 };
 
   return (

@@ -6,7 +6,9 @@ import {
   BsJustifyLeft,
   BsXCircle
 } from 'react-icons/bs'
-import { FaMapMarkerAlt } from 'react-icons/fa'
+import { GiArchiveResearch } from 'react-icons/gi'
+import { AiFillHome } from 'react-icons/ai'
+
 
 function Header() {
 
@@ -48,6 +50,26 @@ function Header() {
       >
 
         <div className='nav-links-cont'>
+
+        <div className='header'>
+          <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
+            <Link 
+            to={"/"}
+            style={{textDecoration: 'none'}}
+            >
+              <div className='h-result'> 
+                <AiFillHome 
+                  style={{
+                    width: "30px",
+                    height: "50px",
+                    color: "#F0007F",
+                  }}
+                /> 
+                <p>Home</p>
+              </div>
+            </Link>
+          </button> 
+        </div>
           
         <div className='header'> 
           <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
@@ -95,18 +117,18 @@ function Header() {
         <div className='header'>
           <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
             <Link 
-            to={"/"}
+            to={"/events_history"}
             style={{textDecoration: 'none'}}
             >
               <div className='h-result'> 
-                <FaMapMarkerAlt 
+                <GiArchiveResearch 
                   style={{
                     width: "30px",
                     height: "50px",
                     color: "#F0007F",
                   }}
                 /> 
-                <p>Maps</p>
+                <p>History</p>
               </div>
             </Link>
           </button> 

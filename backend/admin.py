@@ -1,5 +1,5 @@
 from django.contrib import admin
-from backend.models import Event, Months, Image
+from backend.models import Event, EventsHistory, Months, Image
 from backend.models import HoursResult
 
 
@@ -22,6 +22,7 @@ class ImageAdmin(admin.ModelAdmin):
         )
 
 admin.site.register(Event)
+admin.site.register(EventsHistory)
 admin.site.register(HoursResult, HoursResultAdmin)
 admin.site.register(Months)
 admin.site.register(Image, ImageAdmin)
