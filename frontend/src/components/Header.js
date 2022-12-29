@@ -9,12 +9,64 @@ import {
 import { GiArchiveResearch } from 'react-icons/gi'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUserCircle } from 'react-icons/fa'
-import { MdOutlineLogout } from 'react-icons/md'
+import { MdOutlineLogout, MdLogin } from 'react-icons/md'
 
 
-function Header(props) {
+const Header = (props) => {
 
   const [isMobile, setIsMobile] = useState(true);
+
+  let auth_coise;
+
+  if (props.name == undefined) {
+
+    auth_coise = (
+
+      <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
+            <Link 
+            to={"/login"}
+            style={{textDecoration: 'none'}}
+            >
+              <div className='h-result'> 
+                <MdLogin
+                  style={{
+                    width: "30px",
+                    height: "50px",
+                    color: "#F0007F",
+                  }}
+                /> 
+                <p>LOG IN</p>
+              </div>
+            </Link>
+          </button> 
+
+    )
+
+  } else {
+
+    auth_coise = (
+
+      <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
+            <Link 
+            to={"/logout"}
+            style={{textDecoration: 'none'}}
+            >
+              <div className='h-result'> 
+                <MdOutlineLogout
+                  style={{
+                    width: "30px",
+                    height: "50px",
+                    color: "#F0007F",
+                  }}
+                /> 
+                <p>LOG OUT</p>
+              </div>
+            </Link>
+          </button> 
+
+    )
+
+  }
 
   return (
 
@@ -158,27 +210,11 @@ function Header(props) {
             </Link>
           </button> 
         </div>
-
+        
+        <div className='header'>
+          {auth_coise}
         </div>
 
-        <div className='header'>
-          <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
-            <Link 
-            to={"/logout"}
-            style={{textDecoration: 'none'}}
-            >
-              <div className='h-result'> 
-                <MdOutlineLogout
-                  style={{
-                    width: "30px",
-                    height: "50px",
-                    color: "#F0007F",
-                  }}
-                /> 
-                <p>LOG OUT</p>
-              </div>
-            </Link>
-          </button> 
         </div>
 
       </nav>

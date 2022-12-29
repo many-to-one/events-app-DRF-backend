@@ -43,7 +43,7 @@ function App() {
           <Routes>
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/login" exact element={<Login/>} />
-            <Route path="/login" exact element={<Logout/>} />
+            <Route path="/logout" exact element={<Logout/>} />
             <Route path="/" exact element={<EventList/>} />
             <Route path="/events/:id" element={<NewEventPage /> } />
             <Route path="/result" exact element={<Result/>} />
