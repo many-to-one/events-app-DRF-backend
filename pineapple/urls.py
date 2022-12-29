@@ -3,15 +3,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from backend import urls
-# from rest_framework import routers
-# from backend import views
-
-# router = routers.DefaultRouter()
-# router.register(r'events', views.EventView, 'events')
+from users import urls
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include('backend.urls'))
+    path("api/", include('backend.urls')),
+    path("api/users/", include('users.urls')),
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 if settings.DEBUG:

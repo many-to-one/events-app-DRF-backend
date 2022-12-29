@@ -15,6 +15,7 @@ function EventList() {
         getEvents()
     }, [])
 
+
     // ################### GET ALL EVENTS ###################
     const getEvents = async () => {
         const response = await fetch("/api/events/")

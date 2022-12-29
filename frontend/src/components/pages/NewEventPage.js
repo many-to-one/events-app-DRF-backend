@@ -1,4 +1,3 @@
-// import React from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { MdDoneAll, MdArrowBackIosNew } from 'react-icons/md'

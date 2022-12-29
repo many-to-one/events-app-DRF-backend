@@ -181,6 +181,11 @@
   gap: 40px;
 }
 
+.username {
+  color: aliceblue;
+  margin-top: 150px;
+}
+
 .btn-container{
   display: flex;
   flex-direction: row;

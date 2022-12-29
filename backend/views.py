@@ -89,7 +89,8 @@ def deleteAll(request):
 @api_view(['GET'])
 def getResults(request):
     events = Event.objects.all()
-    result = HoursResult.objects.get(id=34) 
+    result = HoursResult.objects.get(id=1) 
+    # result = HoursResult.objects.create() 
     for h in events:
         result.date = month_list_UA[str(h.date)[5:7]]   
         result.hours += h.hours

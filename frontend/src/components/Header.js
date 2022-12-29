@@ -8,9 +8,11 @@ import {
 } from 'react-icons/bs'
 import { GiArchiveResearch } from 'react-icons/gi'
 import { AiFillHome } from 'react-icons/ai'
+import { FaUserCircle } from 'react-icons/fa'
+import { MdOutlineLogout } from 'react-icons/md'
 
 
-function Header() {
+function Header(props) {
 
   const [isMobile, setIsMobile] = useState(true);
 
@@ -50,6 +52,29 @@ function Header() {
       >
 
         <div className='nav-links-cont'>
+
+        <div className='header'> 
+          <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
+          <Link 
+          to={"/result"}
+          style={{textDecoration: 'none'}}
+          >
+            <div 
+              className='h-result'
+              >
+                <FaUserCircle 
+                  style={{
+                    width: "30px",
+                    height: "50px",
+                    color: "#F0007F",
+                  }}
+                /> 
+                <p>Hi {props.name}</p>
+            </div>
+
+          </Link>
+          </button>
+        </div>
 
         <div className='header'>
           <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
@@ -136,22 +161,28 @@ function Header() {
 
         </div>
 
+        <div className='header'>
+          <button className='event-btn' onClick={() => setIsMobile(!isMobile)}>
+            <Link 
+            to={"/logout"}
+            style={{textDecoration: 'none'}}
+            >
+              <div className='h-result'> 
+                <MdOutlineLogout
+                  style={{
+                    width: "30px",
+                    height: "50px",
+                    color: "#F0007F",
+                  }}
+                /> 
+                <p>LOG OUT</p>
+              </div>
+            </Link>
+          </button> 
+        </div>
+
       </nav>
 
-      {/* <div>
-        <Link>
-          <button className='menu-close'>
-            <BsXCircle 
-              style={{
-                width: "30px",
-                height: "50px",
-                color: "#F0007F",
-              }}
-            />
-            <p>Back</p>
-          </button>
-        </Link>
-      </div> */}
 
     </header>
 
