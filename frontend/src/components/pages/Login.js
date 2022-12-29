@@ -66,9 +66,6 @@ const Login = () => {
                 </button>
                 <p>
                     Don't have an account?{" "}
-                    {/* <span className='link' onClick={register}> 
-                        REGISTER
-                    </span> */}
                     <button className='event-btn'>
                         <Link 
                         to={"/SignUp"}

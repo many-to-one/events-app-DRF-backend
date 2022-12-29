@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 # from rest_framework import viewsets
 from .serializer import EventSerializer, ImageSerializer, MonthsSerializer
 from .models import Event, EventsHistory, HoursResult, Image, Months
@@ -23,10 +24,12 @@ month_list_UA = {
     }
 
 @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
 def getEvents(request):
-    events = Event.objects.all().order_by('-date')
-    serializer = EventSerializer(events, many=True)
-    return Response(serializer.data)
+    # if request.user.is_authenticated:
+        events = Event.objects.all().order_by('-date')
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
 
 @api_view(['GET'])
 def getEventsHistory(request):
@@ -47,6 +50,7 @@ def getEventHistory(request, pk):
     return Response(serializer.data)    
 
 @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
 def createEvent(request):
     data = request.data
     event = Event.objects.create(
