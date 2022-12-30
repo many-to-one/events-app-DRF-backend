@@ -22,17 +22,19 @@ import Logout from './components/pages/Logout';
 function App() {
 
   const [name, setName] = useState('')
+  const [userId, setuserId] = useState('')
 
   useEffect(() => {
     getUser()
   }, [])
  
-  // ################### GET USERNAME ###################
+  // ################### GET USER ###################
   const getUser = async () => {
     const response = await fetch("/api/users/user/")
     const data = await response.json()
     setName(data.username)
-    console.log(data)
+    setuserId(data.id)
+    console.log(userId)
   };
 
   return (
@@ -44,6 +46,7 @@ function App() {
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/login" exact element={<Login/>} />
             <Route path="/logout" exact element={<Logout/>} />
+            {/* <Route path="/" exact component={(userId) => <EventList userId={userId}/>} /> */}
             <Route path="/" exact element={<EventList/>} />
             <Route path="/events/:id" element={<NewEventPage /> } />
             <Route path="/result" exact element={<Result/>} />

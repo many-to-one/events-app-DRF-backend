@@ -25,21 +25,24 @@ month_list_UA = {
 
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
-def getEvents(request):
+def getEvents(request, pk):
     # if request.user.is_authenticated:
-        events = Event.objects.all().order_by('-date')
+        events = Event.objects.filter(user__id=pk).order_by('-date')
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
 
 @api_view(['GET'])
 def getEventsHistory(request):
-    events = EventsHistory.objects.all().order_by('-date')
+    events = Event.objects.filter(user=request.user).order_by('-date')
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)    
 
 @api_view(['GET'])
 def getEvent(request, pk):
-    event = Event.objects.get(id=pk)
+    event = Event.objects.get(
+        id=pk,
+        user=request.user,
+        )
     serializer = EventSerializer(event, many=False)
     return Response(serializer.data)
 
@@ -61,7 +64,9 @@ def createEvent(request):
         visits=data['visits'],
         publications=data['publications'],
         films=data['films'],
+        # user=data.request.user,
     )
+    print(request.user)
     serializer = EventSerializer(event, many=False)
     return Response(serializer.data)    
 
@@ -92,7 +97,7 @@ def deleteAll(request):
 
 @api_view(['GET'])
 def getResults(request):
-    events = Event.objects.all()
+    events = Event.objects.filter(user=request.user)
     result = HoursResult.objects.get(id=1) 
     # result = HoursResult.objects.create() 
     for h in events:

@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import NewUser
 
 
 class Event(models.Model):
@@ -24,6 +25,11 @@ class Event(models.Model):
     )
     studies = models.IntegerField(
         default=0,
+    )
+    user = models.ForeignKey(
+        NewUser,
+        on_delete=models.CASCADE,
+        null=True
     )
 
     def __str__(self) -> str:

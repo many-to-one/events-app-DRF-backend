@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react"
-import React from 'react'
+import React, { useEffect, useState } from "react"
 import ListItem from "../ListItem"
 import AddButton from "../AddButton"
 import { RiDeleteBack2Fill } from 'react-icons/ri'
-import MonthResultItems from "../MonthResultItems"
 
-
-
-function EventList() {
+const EventList = () => {
 
     const [events, setEvents] = useState([])
 
@@ -15,10 +11,23 @@ function EventList() {
         getEvents()
     }, [])
 
+    const [userId, setuserId] = useState('')
 
-    // ################### GET ALL EVENTS ###################
+    useEffect(() => {
+      getUser()
+    }, [])
+ 
+    // ################### GET USER ###################
+    const getUser = async () => {
+      const response = await fetch("/api/users/user/")
+      const data = await response.json()
+      setuserId(data.id)
+      console.log(userId)
+    };
+
+    // ################### GET USERS EVENTS ###################
     const getEvents = async () => {
-        const response = await fetch("/api/events/")
+        const response = await fetch(`/api/events/${userId}/`)
         const data = await response.json()
         setEvents(data)
         console.log(data)
