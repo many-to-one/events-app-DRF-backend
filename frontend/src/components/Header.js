@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { 
   BsFillCalendarCheckFill, 
   BsReverseLayoutTextWindowReverse,
@@ -9,12 +9,17 @@ import {
 import { GiArchiveResearch } from 'react-icons/gi'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUserCircle } from 'react-icons/fa'
-import { MdOutlineLogout, MdLogin } from 'react-icons/md'
+import { MdOutlineLogout, MdLogin, MdRefresh } from 'react-icons/md'
 
 
 const Header = (props) => {
 
   const [isMobile, setIsMobile] = useState(true);
+
+  function refreshPage() {
+    window.location.reload();
+    return <Navigate to="/login"/>
+  }
 
   let auth_coise;
 
@@ -50,6 +55,7 @@ const Header = (props) => {
             <Link 
             to={"/logout"}
             style={{textDecoration: 'none'}}
+            onClick={refreshPage}
             >
               <div className='h-result'> 
                 <MdOutlineLogout
@@ -59,7 +65,7 @@ const Header = (props) => {
                     color: "#F0007F",
                   }}
                 /> 
-                <p>LOG OUT</p>
+                  <p>LOG OUT</p>
               </div>
             </Link>
           </button> 

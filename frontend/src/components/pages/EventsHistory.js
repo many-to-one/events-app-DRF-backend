@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import EventsHistoryItem from '../EventsHistoryItem';
 import { MdArrowBackIosNew } from 'react-icons/md'
 
-const EventsHistory = () => {
+const EventsHistory = ({userId}) => {
 
 const [eventsHistory, setEventsHistory] = useState([]);
 
@@ -12,7 +12,7 @@ useEffect (() => {
 }, [])
 
 const getEventsHistory = async () => {
-    const resp = await fetch('/api/events_history/')
+    const resp = await fetch(`/api/events_history/${userId}/`)
     const data = await resp.json()
     setEventsHistory(data)
     console.log(data)

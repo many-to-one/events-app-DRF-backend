@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { MdDoneAll, MdArrowBackIosNew } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom';
 
-function NewEventPage() {
+function NewEventPage({userId}) {
 
     const [event, setEvent] = useState({name: {}});
 
@@ -16,7 +16,7 @@ function NewEventPage() {
 
 // ################### GET EVENT BY ID ###################
 const getEvent = async () => {
-    const response = await fetch(`/api/events/${id}`)
+    const response = await fetch(`/api/events/${id}/${userId}/`)
     const data = await response.json()
     setEvent(data)
     console.log(data)
@@ -24,7 +24,7 @@ const getEvent = async () => {
 
 // ################### CREATE EVENT ######################
 const createEvent = async () => {
-    fetch("/api/event/create/", {
+    fetch(`/api/event/create/${userId}/`, {
         method: 'POST',
         body:JSON.stringify(event),
         headers: {
@@ -35,14 +35,13 @@ const createEvent = async () => {
 
 // ################### UPDATE EVENT BY ID ###################
 const updateEvent = async () => {
-    fetch(`/api/events/${id}/update/`, {
+    fetch(`/api/events/${id}/${userId}/update/`, {
         method: 'PUT',
         body:JSON.stringify(event),
         headers: {
             'Content-Type': 'application/json'
         },
     })
-    // console.log(data)
 };
 
 // ################### BUTTON ONCLICK FUNCTION ###################

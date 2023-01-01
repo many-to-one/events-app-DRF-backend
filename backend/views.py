@@ -1,47 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-# from rest_framework import viewsets
+
+from users.models import NewUser
 from .serializer import EventSerializer, ImageSerializer, MonthsSerializer
 from .models import Event, EventsHistory, HoursResult, Image, Months
 from datetime import datetime
 
 
 month_list_UA = {
-        '1': 'January',
-        '2': 'February',
-        '3': 'March',
-        '4': 'April',
-        '5': 'May',
-        '6': 'June',
-        '7': 'July',
-        '8': 'August',
-        '9': 'September',
+        '01': 'January',
+        '02': 'February',
+        '03': 'March',
+        '04': 'April',
+        '05': 'May',
+        '06': 'June',
+        '07': 'July',
+        '08': 'August',
+        '09': 'September',
         '10': 'October',
         '11': 'November',
         '12': 'December',
     }
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
 def getEvents(request, pk):
-    # if request.user.is_authenticated:
-        events = Event.objects.filter(user__id=pk).order_by('-date')
-        serializer = EventSerializer(events, many=True)
-        return Response(serializer.data)
+    events = Event.objects.filter(user__id=pk).order_by('-date')
+    serializer = EventSerializer(events, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
-def getEventsHistory(request):
-    events = Event.objects.filter(user=request.user).order_by('-date')
+def getEventsHistory(request, pk):
+    events = Event.objects.filter(user__id=pk).order_by('-date')
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)    
 
 @api_view(['GET'])
-def getEvent(request, pk):
+def getEvent(request, ev_pk, user_pk):
     event = Event.objects.get(
-        id=pk,
-        user=request.user,
+        id=ev_pk,
+        user__id=user_pk,
         )
     serializer = EventSerializer(event, many=False)
     return Response(serializer.data)
@@ -53,27 +52,29 @@ def getEventHistory(request, pk):
     return Response(serializer.data)    
 
 @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-def createEvent(request):
+def createEvent(request, pk):
+    new_user = NewUser.objects.get(id=pk)
     data = request.data
     event = Event.objects.create(
-        # date=data['date'],
         event=data['event'],
         hours=data['hours'],
         minutes=data['minutes'],
         visits=data['visits'],
         publications=data['publications'],
         films=data['films'],
-        # user=data.request.user,
+        user=new_user
     )
     print(request.user)
     serializer = EventSerializer(event, many=False)
     return Response(serializer.data)    
 
 @api_view(['PUT'])
-def updateEvent(request, pk):
+def updateEvent(request, ev_pk, user_pk):
     data = request.data
-    event = Event.objects.get(id=pk)
+    event = Event.objects.get(
+        id=ev_pk,
+        user__id=user_pk,
+        )
     serializer = EventSerializer(instance=event, data=data)
 
     if serializer.is_valid():
@@ -82,9 +83,12 @@ def updateEvent(request, pk):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
-def deleteEvent(request, pk):
+def deleteEvent(request, ev_pk, user_pk):
     data = request.data
-    event = Event.objects.get(id=pk)
+    event = Event.objects.get(
+        id=ev_pk,
+        user__id=user_pk,
+        )
     event.delete()
     return Response('Event was deleted')
 
@@ -96,12 +100,11 @@ def deleteAll(request):
     return Response('Events were deleted')
 
 @api_view(['GET'])
-def getResults(request):
-    events = Event.objects.filter(user=request.user)
-    result = HoursResult.objects.get(id=1) 
-    # result = HoursResult.objects.create() 
+def getResults(request, user_pk):
+    events = Event.objects.filter(user__id=user_pk)
+    result = HoursResult.objects.get(id=1)  
     for h in events:
-        result.date = month_list_UA[str(h.date)[5:7]]   
+        result.date = 'Result' #result.date = month_list_UA[str(h.date)[5:7]]   
         result.hours += h.hours
         result.minutes += h.minutes
         if result.minutes >= 60:
@@ -114,9 +117,9 @@ def getResults(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getRecordedMonthResults(request):
-    month_result = Months.objects.create()
-    events = Event.objects.all()
+def getRecordedMonthResults(request, user_pk):
+    month_result = Months.objects.create(user__id=user_pk)
+    events = Event.objects.filter(user__id=user_pk)
     for ev in events:
         eventsHistory = EventsHistory.objects.create()
         eventsHistory.date = ev.date
@@ -128,7 +131,7 @@ def getRecordedMonthResults(request):
         eventsHistory.films = ev.films
         eventsHistory.save()
 
-        month_result.date = str(f'{str(ev.date)[0:4]} {month_list_UA[str(ev.date)[5:7]]}')
+        month_result.date = ev.date #str(f'{str(ev.date)[0:4]} {month_list_UA[str(ev.date)[5:7]]}')
         month_result.hours += ev.hours
         month_result.minutes += ev.minutes
         if month_result.minutes >= 60:
@@ -142,8 +145,8 @@ def getRecordedMonthResults(request):
     return Response(serializer.data) 
 
 @api_view(['DELETE'])
-def deleteMonthResult(request):
-    events = Months.objects.all()
+def deleteMonthResult(request, user_pk):
+    events = Months.objects.filter(user__id=user_pk)
     history = EventsHistory.objects.all()
     events.delete()
     history.delete()
@@ -151,8 +154,8 @@ def deleteMonthResult(request):
     
 
 @api_view(['GET'])
-def getMonthsResults(request):
-    results = Months.objects.all()
+def getMonthsResults(request, user_pk):
+    results = Months.objects.filter(user__id=user_pk)
     serializer = MonthsSerializer(results, many=True)
     return Response(serializer.data)
 

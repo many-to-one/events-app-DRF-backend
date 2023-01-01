@@ -34,26 +34,24 @@ function App() {
     const data = await response.json()
     setName(data.username)
     setuserId(data.id)
-    console.log(userId)
   };
 
   return (
     <BrowserRouter>
       <div className='container'>
         <div className="App">
-          <Header name={name}/>
+          <Header name={name} />
           <Routes>
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/login" exact element={<Login/>} />
             <Route path="/logout" exact element={<Logout/>} />
-            {/* <Route path="/" exact component={(userId) => <EventList userId={userId}/>} /> */}
-            <Route path="/" exact element={<EventList/>} />
-            <Route path="/events/:id" element={<NewEventPage /> } />
-            <Route path="/result" exact element={<Result/>} />
-            <Route path="/by_month" exact element={<MonthResults/>} />
-            <Route path="/success" exact element={<Success />} />
+            <Route path="/" exact element={<EventList userId={userId}/>} />
+            <Route path="/events/:id" element={<NewEventPage userId={userId} /> } />
+            <Route path="/result" exact element={<Result userId={userId}/>} />
+            <Route path="/by_month" exact element={<MonthResults userId={userId}/>} />
+            <Route path="/success" exact element={<Success userId={userId}/>} />
             <Route path="/menu" exact element={<Menu />} />
-            <Route path="/events_history" exact element={<EventsHistory />} />
+            <Route path="/events_history" exact element={<EventsHistory userId={userId} />} />
           </Routes>
         </div>
       </div>  

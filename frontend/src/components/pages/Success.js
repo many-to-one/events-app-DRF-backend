@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import MonthResults from './MonthResults'
 
 
-const AllMonthResult = () => {
+const AllMonthResult = ({userId}) => {
 // ################### SAVE A RESULT FOR THE CURRENT MONTH ###################
 
-  fetch('/api/month/create/')
+  fetch(`/api/month/create/${userId}/`)
 
   return (
     <div>

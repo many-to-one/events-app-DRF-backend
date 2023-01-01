@@ -3,34 +3,22 @@ import ListItem from "../ListItem"
 import AddButton from "../AddButton"
 import { RiDeleteBack2Fill } from 'react-icons/ri'
 
-const EventList = () => {
+
+const EventList = ({userId}) => {
 
     const [events, setEvents] = useState([])
 
     useEffect(() => {
-        getEvents()
+        getEvents();
+        console.log(userId)
     }, [])
-
-    const [userId, setuserId] = useState('')
-
-    useEffect(() => {
-      getUser()
-    }, [])
- 
-    // ################### GET USER ###################
-    const getUser = async () => {
-      const response = await fetch("/api/users/user/")
-      const data = await response.json()
-      setuserId(data.id)
-      console.log(userId)
-    };
 
     // ################### GET USERS EVENTS ###################
     const getEvents = async () => {
         const response = await fetch(`/api/events/${userId}/`)
         const data = await response.json()
         setEvents(data)
-        console.log(data)
+        console.log(userId)
     };
 
     // ################### DELETE ALL EVENTS ###################
@@ -54,7 +42,7 @@ const EventList = () => {
 
             <div className="y">
                 {events.map((ev, index) => (
-                    <ListItem key={index} ev={ev} />
+                    <ListItem key={index} ev={ev}/>
                 ))}
             </div>
 

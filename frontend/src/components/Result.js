@@ -4,7 +4,7 @@ import { MdArrowBackIosNew } from 'react-icons/md'
 import { AiFillSave } from 'react-icons/ai'
 
 
-const Result = () => {
+const Result = ({userId}) => {
 // ################### GET ALL RESULT ###################
     const [result, setResult] = useState([]);
 
@@ -13,7 +13,7 @@ const Result = () => {
     },[])
 
     const getResult = async () => {
-        const resp = await fetch('/api/results/')
+        const resp = await fetch(`/api/results/${userId}/`)
         const data = await resp.json()
         setResult(data)
         console.log(data)

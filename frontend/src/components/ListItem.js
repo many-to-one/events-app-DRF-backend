@@ -1,26 +1,25 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md'
 
 
 
 const ListItem = ({ev}) => {
 
-  const navigate = useNavigate();
-
   const { id } = useParams();
 
 // ################### DELETE EVENT BY ID ###################
 const deleteEvent = async () => {
 
-  fetch(`/api/events/${ev.id}/delete/`, {
+  fetch(`/api/events/${ev.id}/${ev.user}/delete/`, {
       method: 'DELETE',
       headers: {
           'Content-Type': 'application/json'
       },
   })
   window.location.reload(false);
+
 };
 
   return (

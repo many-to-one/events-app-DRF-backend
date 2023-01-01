@@ -7,6 +7,10 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [redirect, setRedirect] = useState(false)
 
+    function refreshPage() {
+        // window.location.reload();
+        return <Navigate to="/"/>
+      }
 
     const submit = async (e) => {
         e.preventDefault();
@@ -23,14 +27,13 @@ const Login = () => {
                     email,
                     password,
                 })
-            });
-
-            setRedirect(true)
-
+            }); 
+            window.location.reload();
+            setRedirect(true)            
         }
-
         if (redirect) {
             return <Navigate to="/"/>
+            // return refreshPage()
         }
 
 
@@ -61,6 +64,7 @@ const Login = () => {
                     />
                 <button 
                     className='signupBtn'
+                    // onClick={refreshPage()}
                 >
                     LOG IN
                 </button>

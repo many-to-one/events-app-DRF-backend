@@ -12,8 +12,12 @@ function Logout () {
             },
             credentials: 'include',
         });
-
-    return <Navigate to="/login"/>
+        // return <Navigate to="/login"/>
+        return (
+            <div>
+                <Navigate to="/login"/>
+            </div>
+        )
   }
 
   export default Logout

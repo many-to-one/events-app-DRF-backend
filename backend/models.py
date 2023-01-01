@@ -109,6 +109,11 @@ class Months(models.Model):
     )
     films = models.IntegerField(
         default=0,
+    )
+    user = models.ForeignKey(
+        NewUser,
+        on_delete=models.CASCADE,
+        null=True
     )  
 
     def __str__(self) -> str:

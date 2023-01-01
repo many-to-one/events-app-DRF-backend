@@ -4,7 +4,7 @@ import { MdArrowBackIosNew } from 'react-icons/md'
 import MonthResultItems from '../MonthResultItems';
 
 
-const MonthResult = (res) => {
+const MonthResult = ({userId}) => {
 // ################### GET ALL RESULT ###################
     const [result, setResult] = useState([]);
 
@@ -13,7 +13,7 @@ const MonthResult = (res) => {
     }, [])
 
     const getResult = async () => {
-        const resp = await fetch('/api/get_month_results/')
+        const resp = await fetch(`/api/get_month_results/${userId}/`)
         const data = await resp.json()
         setResult(data)
         console.log(data)
