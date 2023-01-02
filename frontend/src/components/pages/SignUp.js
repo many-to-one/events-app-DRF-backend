@@ -41,29 +41,32 @@ const SignUp = () => {
         <div className="signup-cont">
 
             <form className="signup">
-                <label htmlFor='username'>Username</label>
+                {/* <label htmlFor='username'>Username</label> */}
                 <input
                     type='text'
                     id='username'
                     name='username'
+                    placeholder="Username"
                     value={username}
                     required
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <label htmlFor='email'>Email Address</label>
+                {/* <label htmlFor='email'>Email Address</label> */}
                 <input
                     type='email'
                     name='email'
                     id='email'
+                    placeholder="Email"
                     value={email}
                     required
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <label htmlFor='password'>Password</label>
+                {/* <label htmlFor='password'>Password</label> */}
                 <input
                     type='password'
                     name='password'
                     id='password'
+                    placeholder="Password"
                     minLength={8}
                     required
                     value={password}

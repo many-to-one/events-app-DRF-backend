@@ -16,3 +16,14 @@
     align-items: center;
     margin-top: 30%;
 }
+
+input {
+    border: none;
+    outline: 0;
+    color: aliceblue;
+    border-bottom: 1px solid #F0007F;
+    background: none;
+    padding: 5px 10px;
+    margin-top: 20px;
+    width: 300px;
+}
