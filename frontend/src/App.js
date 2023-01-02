@@ -37,9 +37,9 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
       <div className='container'>
         <div className="App">
+        <BrowserRouter>
           <Header name={name} />
           <Routes>
             <Route path="/signup" exact element={<SignUp/>} />
@@ -53,9 +53,9 @@ function App() {
             <Route path="/menu" exact element={<Menu />} />
             <Route path="/events_history" exact element={<EventsHistory userId={userId} />} />
           </Routes>
+          </BrowserRouter>
         </div>
       </div>  
-    </BrowserRouter>
   );
 }
 

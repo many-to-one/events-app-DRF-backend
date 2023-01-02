@@ -8,8 +8,7 @@ const Login = () => {
     const [redirect, setRedirect] = useState(false)
 
     function refreshPage() {
-        // window.location.reload();
-        return <Navigate to="/"/>
+        window.location.reload();
       }
 
     const submit = async (e) => {
@@ -28,12 +27,14 @@ const Login = () => {
                     password,
                 })
             }); 
-            window.location.reload();
+
             setRedirect(true)            
         }
+
         if (redirect) {
-            return <Navigate to="/"/>
-            // return refreshPage()
+            window.location.reload(true);
+            window.location.replace("/result");
+            // replace to user profile after it will be created
         }
 
 

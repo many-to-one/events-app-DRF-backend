@@ -12,12 +12,7 @@ function Logout () {
             },
             credentials: 'include',
         });
-        // return <Navigate to="/login"/>
-        return (
-            <div>
-                <Navigate to="/login"/>
-            </div>
-        )
+        window.location.replace("/login")
   }
 
   export default Logout

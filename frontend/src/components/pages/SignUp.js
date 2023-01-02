@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 const SignUp = () => {
 
@@ -41,7 +40,6 @@ const SignUp = () => {
         <div className="signup-cont">
 
             <form className="signup">
-                {/* <label htmlFor='username'>Username</label> */}
                 <input
                     type='text'
                     id='username'
@@ -51,7 +49,6 @@ const SignUp = () => {
                     required
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                {/* <label htmlFor='email'>Email Address</label> */}
                 <input
                     type='email'
                     name='email'
@@ -61,7 +58,6 @@ const SignUp = () => {
                     required
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                {/* <label htmlFor='password'>Password</label> */}
                 <input
                     type='password'
                     name='password'
@@ -72,17 +68,20 @@ const SignUp = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                <button 
-                    className='signupBtn'
-                >
+                <button className='signupBtn'>
                     SIGN UP
                 </button>
-                <p>
-                    Already have an account?{" "}
-                    {/* <span className='link' onClick={gotoLoginPage}> 
-                        Login
-                    </span> */}
-                </p>
+
+                <div className="login-cont">
+                    <p>Already have an account?</p>
+                    <Link 
+                      to={"/login"}
+                      style={{textDecoration: 'none'}}
+                    >
+                        <p id="login">Log in</p>
+                    </Link>
+                </div>
+    
             </form>
 
         </div>
