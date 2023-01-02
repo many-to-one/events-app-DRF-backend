@@ -34,7 +34,7 @@ const Login = () => {
         if (redirect) {
             window.location.reload(true);
             window.location.replace("/result");
-            // replace to user profile after it will be created
+            // replace to user profile after it will be created or better to create a start page with "Hi user"
         }
 
 
