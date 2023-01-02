@@ -119,9 +119,10 @@ def getResults(request, user_pk):
 @api_view(['GET'])
 def getRecordedMonthResults(request, user_pk):
     month_result = Months.objects.create()
+    month_result.save()
     events = Event.objects.filter(user__id=user_pk)
     for ev in events:
-        eventsHistory = EventsHistory.objects.create()
+        eventsHistory = EventsHistory.objects.create(month_id=month_result.id)
         eventsHistory.date = ev.date
         eventsHistory.event = ev.event
         eventsHistory.hours = ev.hours
@@ -129,7 +130,6 @@ def getRecordedMonthResults(request, user_pk):
         eventsHistory.visits = ev.visits
         eventsHistory.publications = ev.publications
         eventsHistory.films = ev.films
-        # eventsHistory.month = month_result.id
         eventsHistory.user = ev.user
         eventsHistory.save()
 
@@ -151,9 +151,12 @@ def getRecordedMonthResults(request, user_pk):
 def deleteMonthResult(request, month_pk, user_pk):
     events = Months.objects.filter(
         id=month_pk,
-        user__id=user_pk
+        user__id=user_pk,
         )
-    history = EventsHistory.objects.filter(user__id=user_pk)
+    history = EventsHistory.objects.filter(
+        user__id=user_pk,
+        month=month_pk,
+        )
     events.delete()
     history.delete()
     return Response('Events were deleted')

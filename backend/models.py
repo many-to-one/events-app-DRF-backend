@@ -65,6 +65,11 @@ class EventsHistory(models.Model):
         on_delete=models.CASCADE,
         null=True,
     )
+    month = models.ForeignKey(
+        'Months',
+        on_delete=models.CASCADE,
+        null=True,
+    )
 
     def __str__(self) -> str:
         return str(self.date)[:16]
