@@ -29,7 +29,7 @@ class Event(models.Model):
     user = models.ForeignKey(
         NewUser,
         on_delete=models.CASCADE,
-        null=True
+        null=True,
     )
 
     def __str__(self) -> str:
@@ -59,6 +59,11 @@ class EventsHistory(models.Model):
     )
     studies = models.IntegerField(
         default=0,
+    )
+    user = models.ForeignKey(
+        NewUser,
+        on_delete=models.CASCADE,
+        null=True,
     )
 
     def __str__(self) -> str:

@@ -30,11 +30,11 @@ def getEvents(request, pk):
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])
-def getEventsHistory(request, pk):
-    events = Event.objects.filter(user__id=pk).order_by('-date')
-    serializer = EventSerializer(events, many=True)
-    return Response(serializer.data)    
+# @api_view(['GET'])
+# def getEventsHistory(request, pk):
+#     events = Event.objects.filter(user__id=pk).order_by('-date')
+#     serializer = EventSerializer(events, many=True)
+#     return Response(serializer.data)    
 
 @api_view(['GET'])
 def getEvent(request, ev_pk, user_pk):
@@ -46,9 +46,9 @@ def getEvent(request, ev_pk, user_pk):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getEventHistory(request, pk):
-    event = EventsHistory.objects.get(id=pk)
-    serializer = EventSerializer(event, many=False)
+def getEventHistory(request, user_pk):
+    event = EventsHistory.objects.filter(user=user_pk)
+    serializer = EventSerializer(event, many=True)
     return Response(serializer.data)    
 
 @api_view(['POST'])
@@ -104,7 +104,7 @@ def getResults(request, user_pk):
     events = Event.objects.filter(user__id=user_pk)
     result = HoursResult.objects.get(id=1)  
     for h in events:
-        result.date = 'Result' #result.date = month_list_UA[str(h.date)[5:7]]   
+        result.date = 'Result for now' #result.date = month_list_UA[str(h.date)[5:7]]   
         result.hours += h.hours
         result.minutes += h.minutes
         if result.minutes >= 60:
@@ -129,6 +129,8 @@ def getRecordedMonthResults(request, user_pk):
         eventsHistory.visits = ev.visits
         eventsHistory.publications = ev.publications
         eventsHistory.films = ev.films
+        # eventsHistory.month = month_result.id
+        eventsHistory.user = ev.user
         eventsHistory.save()
 
         month_result.date = str(f'{str(ev.date)[0:4]} {month_list_UA[str(ev.date)[5:7]]}')
@@ -151,7 +153,7 @@ def deleteMonthResult(request, month_pk, user_pk):
         id=month_pk,
         user__id=user_pk
         )
-    history = EventsHistory.objects.all()
+    history = EventsHistory.objects.filter(user__id=user_pk)
     events.delete()
     history.delete()
     return Response('Events were deleted')

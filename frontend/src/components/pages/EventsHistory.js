@@ -15,7 +15,8 @@ const getEventsHistory = async () => {
     const resp = await fetch(`/api/events_history/${userId}/`)
     const data = await resp.json()
     setEventsHistory(data)
-    console.log(data)
+    console.log(userId)
+    console.log(eventsHistory)
 }
 
   return (
