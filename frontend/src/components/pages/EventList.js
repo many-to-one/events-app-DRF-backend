@@ -25,7 +25,7 @@ const EventList = ({userId}) => {
 
     const deleteAll = async () => {
 
-        fetch("/api/event/delete-all/", {
+        fetch(`/api/event/delete-all/${userId}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

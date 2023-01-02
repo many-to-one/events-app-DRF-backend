@@ -94,8 +94,8 @@ def deleteEvent(request, ev_pk, user_pk):
 
 
 @api_view(['DELETE'])
-def deleteAll(request):
-    events = Event.objects.all()
+def deleteAll(request, user_pk):
+    events = Event.objects.filter(user__id=user_pk)
     events.delete()
     return Response('Events were deleted')
 
