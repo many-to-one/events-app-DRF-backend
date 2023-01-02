@@ -4,20 +4,15 @@ import { MdDeleteForever } from 'react-icons/md'
 
 const MonthResultItems = ({res}) => {
 
-  // const [events, setEvents] = useState([])
-
-  // useEffect (() => {
-  //   getEvents()
-  // }, [])
-
 // ################### DELETE MONTH RESULT ###################
 const deleteMonthResult = async () => {
-  fetch('/api/month/delete/', {
+  fetch(`/api/month/delete/${res.id}/${res.user}/`, {
     method: 'DELETE',
     headers: {
         'Content-Type': 'application/json'
     },
 })
+console.log("delete:" + res.user)
 window.location.reload(false);
 };
 

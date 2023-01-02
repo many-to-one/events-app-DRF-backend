@@ -13,7 +13,7 @@ urlpatterns = [
     path('results/<str:user_pk>/', getResults, name='results'),
     path('month/create/<str:user_pk>/', getRecordedMonthResults, name='create_month_results'),
     path('get_month_results/<str:user_pk>/', getMonthsResults, name='get_month_results'),
-    path('month/delete/', deleteMonthResult, name='delete_month_results'),
+    path('month/delete/<str:month_pk>/<str:user_pk>/', deleteMonthResult, name='delete_month_results'),
     path('images/', getImages, name='images'),
     path('images/<str:pk>', getImage, name='image'),
 ]

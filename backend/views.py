@@ -118,7 +118,7 @@ def getResults(request, user_pk):
 
 @api_view(['GET'])
 def getRecordedMonthResults(request, user_pk):
-    month_result = Months.objects.create(user__id=user_pk)
+    month_result = Months.objects.create()
     events = Event.objects.filter(user__id=user_pk)
     for ev in events:
         eventsHistory = EventsHistory.objects.create()
@@ -131,7 +131,7 @@ def getRecordedMonthResults(request, user_pk):
         eventsHistory.films = ev.films
         eventsHistory.save()
 
-        month_result.date = ev.date #str(f'{str(ev.date)[0:4]} {month_list_UA[str(ev.date)[5:7]]}')
+        month_result.date = str(f'{str(ev.date)[0:4]} {month_list_UA[str(ev.date)[5:7]]}')
         month_result.hours += ev.hours
         month_result.minutes += ev.minutes
         if month_result.minutes >= 60:
@@ -140,13 +140,17 @@ def getRecordedMonthResults(request, user_pk):
         month_result.visits += ev.visits
         month_result.publications += ev.publications
         month_result.films += ev.films
+        month_result.user = ev.user
     month_result.save()
     serializer = EventSerializer(month_result, many=False)
     return Response(serializer.data) 
 
 @api_view(['DELETE'])
-def deleteMonthResult(request, user_pk):
-    events = Months.objects.filter(user__id=user_pk)
+def deleteMonthResult(request, month_pk, user_pk):
+    events = Months.objects.filter(
+        id=month_pk,
+        user__id=user_pk
+        )
     history = EventsHistory.objects.all()
     events.delete()
     history.delete()
