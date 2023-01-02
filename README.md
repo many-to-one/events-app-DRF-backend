@@ -1,4 +1,4 @@
-# pineapple
+# EVENTS-APP
 Django - backend.
 React JS - frontend.
 This is my first app with Django & React JS.
