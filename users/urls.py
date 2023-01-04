@@ -1,10 +1,5 @@
-from django.urls import path
-from .views import ChangePasswordView, RegisterView, LoginView, UserView, LogoutView
+from django.urls import path, include
 
 urlpatterns = [
-    path('register/', RegisterView.as_view(), name='register'),
-    path('login/', LoginView.as_view(), name='login'),
-    path('user/', UserView.as_view(), name='user'),
-    path('logout/', LogoutView.as_view()),
-    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
+    path('api/user/', include('drf_user.urls')),
 ]

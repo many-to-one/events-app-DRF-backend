@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import NewUser
+from drf_user.urls import User
 
 
 class Event(models.Model):
@@ -27,7 +27,7 @@ class Event(models.Model):
         default=0,
     )
     user = models.ForeignKey(
-        NewUser,
+        User,
         on_delete=models.CASCADE,
         null=True,
     )
